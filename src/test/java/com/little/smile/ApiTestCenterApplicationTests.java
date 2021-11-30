@@ -1,4 +1,4 @@
-package com.little.smaile;
+package com.little.smile;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
