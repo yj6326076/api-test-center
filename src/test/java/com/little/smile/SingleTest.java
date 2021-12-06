@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 /**
  * SingleTest
@@ -27,7 +28,7 @@ public class SingleTest {
         SimpleHttpRequest post = SimpleHttpRequests.post("https://httpbin.org/post");
         List<String> stringList = new ArrayList<>();
         for (int i = 0;i<20;i++ ) {
-            aptAsyncHttpRunner.excute(post, new FutureCallback<SimpleHttpResponse>() {
+            Future<SimpleHttpResponse> result = aptAsyncHttpRunner.execute(post, new FutureCallback<SimpleHttpResponse>() {
                 @Override
                 public void completed(SimpleHttpResponse result) {
                     stringList.add(result.getBodyText());

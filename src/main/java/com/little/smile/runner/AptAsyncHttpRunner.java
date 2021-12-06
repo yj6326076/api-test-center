@@ -15,6 +15,7 @@ import org.apache.hc.core5.io.CloseMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import java.util.concurrent.Future;
 
 /**
@@ -24,12 +25,27 @@ import java.util.concurrent.Future;
  * @since 2021-12-06
  */
 public class AptAsyncHttpRunner {
-    private List<CloseableHttpAsyncClient> clientList;
+    private final List<CloseableHttpAsyncClient> clientList;
     private final HttpClientContext context;
 
+    /**
+     * 创建需要cookie保持的异步请求执行
+     */
     public AptAsyncHttpRunner() {
-        clientList = new ArrayList<>();
-        context = AptHttpClientBuilder.buildContext();
+        this(true);
+    }
+
+    /**
+     * 创建异步请求执行类
+     * @param needCookie 是否需要cookie保持
+     */
+    public AptAsyncHttpRunner(boolean needCookie) {
+        clientList = Collections.synchronizedList(new ArrayList<>());
+        if (needCookie) {
+            context = AptHttpClientBuilder.buildContext();
+        } else {
+            context = null;
+        }
     }
 
     /**
@@ -39,7 +55,7 @@ public class AptAsyncHttpRunner {
      * @return 执行结果
      */
     @SneakyThrows
-    public Future<SimpleHttpResponse> excute(SimpleHttpRequest request, FutureCallback<SimpleHttpResponse> futureCallback) {
+    public Future<SimpleHttpResponse> execute(SimpleHttpRequest request, FutureCallback<SimpleHttpResponse> futureCallback) {
         CloseableHttpAsyncClient client = AptHttpClientBuilder.buildAsync();
         clientList.add(client);
         client.start();
