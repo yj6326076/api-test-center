@@ -7,7 +7,7 @@ a center for testing the api
 | [![druid](https://img.shields.io/badge/dependency-druid-yellowgreen)](https://github.com/alibaba/druid) | datasource |
 | [![commons-jexl3](https://img.shields.io/badge/dependency-commons--jexl3-yellowgreen)](https://github.com/apache/commons-jexl) | Java-symbiotic Expression Language |
 | [![easy-excel](https://img.shields.io/badge/dependency-easy--excel-yellowgreen)](https://github.com/alibaba/easyexcel) | excel file import or output |  
-| [![httpclient](https://img.shields.io/badge/dependency-httpclient-yellowgreen)](https://github.com/alibaba/easyexcel) | excel file import or output |  
+| [![httpclient](https://img.shields.io/badge/dependency-httpclient-yellowgreen)](https://github.com/alibaba/easyexcel) | send http request |  
 
 
 == License  
